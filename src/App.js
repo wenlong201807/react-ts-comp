@@ -1,14 +1,14 @@
 
-
+import Button from "./components/Button/button.tsx";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <h1>asdf</h1>
-        <h2>asdf</h2>
-        <h3>asdf</h3>
-      </header>
+      <Button className="aa" >默认按钮</Button>
+      <Button disabled> disabled button</Button>
+      <Button btnType="primary" size="lg">Large Button</Button>
+      <Button btnType="primary" size="sm">Large Button</Button>
+      <Button btnType="link" size="sm" href="http://www.baidu.com">百度 Button</Button>
     </div>
   );
 }
