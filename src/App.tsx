@@ -3,6 +3,7 @@ import Button from './components/Button/button';
 import Menu, { MenuProps } from './components/Menu/menu';
 import MenuItem from './components/Menu/menuItem';
 import SubMenu from './components/Menu/subMenu';
+import Icon from './components/Icon';
 
 const defalutProps: MenuProps = {
   defaultIndex: '0',
@@ -43,6 +44,11 @@ function App() {
       <br />
       <br />
       {generateMenu(defalutProps)}
+
+      <br />
+      <br />
+      <br />
+      <Icon icon="coffee" theme="danger" size="10x" />
     </div>
   );
 }
