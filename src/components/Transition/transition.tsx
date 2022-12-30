@@ -18,6 +18,7 @@ const Transition: React.FC<TransitionProps> = (props) => {
   const nodeRef = React.useRef(null);
   // 报错 findDOMNode is deprecated in StrictMode. findDOMNode was passed an instance of Transition which is inside StrictMode. Instead, add a ref directly to the element you want to reference.
   // 解决 https://stackoverflow.com/questions/60903335/warning-finddomnode-is-deprecated-in-strictmode-finddomnode-was-passed-an-inst
+  // 详细说明 https://blog.csdn.net/qq_40314318/article/details/105209873
   const { children, classNames, animation, wrapper, ...restProps } = props;
   return (
     <CSSTransition
