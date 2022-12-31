@@ -22,8 +22,8 @@ const disabledProps: ButtonProps = {
 describe('test Button component', () => {
   // 测试功能一
   it('should render the correct default button', () => {
-    const wrapper = render(<Button {...defaultProps}>Nice</Button>)
-    const element = wrapper.getByText('Nice') as HTMLButtonElement
+    const { getByText } = render(<Button {...defaultProps}>Nice</Button>)
+    const element = getByText('Nice') as HTMLButtonElement
     expect(element).toBeInTheDocument()
     expect(element.tagName).toEqual('BUTTON')
     expect(element).toHaveClass('btn btn-default')
@@ -34,8 +34,8 @@ describe('test Button component', () => {
 
   // 测试功能二
   it('should render the correct component based on different props', () => {
-    const wrapper = render(<Button {...testProps}>Nice</Button>)
-    const element = wrapper.getByText('Nice')
+    const screen = render(<Button {...testProps}>Nice</Button>)
+    const element = screen.getByText('Nice')
     expect(element).toBeInTheDocument()
     expect(element).toHaveClass('btn-primary btn-lg klass') // 测试不同组件，会包含不同的类名
   })

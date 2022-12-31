@@ -86,6 +86,7 @@ describe('test Menu and MenuItem component in default(horizontal) mode', () => {
 
   // 测试回调
   it('click items should change active and call the right callback', () => {
+    // eslint-disable-next-line testing-library/prefer-screen-queries
     const thirdItem = wrapper.getByText('xyz');
     fireEvent.click(thirdItem);
     expect(thirdItem).toHaveClass('is-active');
