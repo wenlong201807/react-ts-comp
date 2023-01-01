@@ -37,13 +37,17 @@ export const AutoComplete: FC<AutoCompleteProps> = (props) => {
   const [loading, setLoading] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
   const [highlightIndex, setHighlightIndex] = useState(-1);
+  // 多次渲染中，保持相同的引用
+  // 当下拉列表中有一个被选中后，点击回车确定选中之后，需要清空下拉列表，同时修改的input中的选中值，
+  // 此次会多一次发请求的调用，需要禁止掉它
   const triggerSearch = useRef(false);
-  const componentRef = useRef<HTMLDivElement>(null);
+  const componentRef = useRef<HTMLDivElement>(null); // 设置dom点击范围
   const debouncedValue = useDebounce(inputValue, 300);
   useClickOutside(componentRef, () => {
-    setSugestions([]);
+    setSugestions([]); // dom之后，则关闭下拉框
   });
   useEffect(() => {
+    // 避免最后一次多余的请求，必须是 有选中的值才发请求
     if (debouncedValue && triggerSearch.current) {
       setSugestions([]);
       const results = fetchSuggestions(debouncedValue);
@@ -66,7 +70,8 @@ export const AutoComplete: FC<AutoCompleteProps> = (props) => {
     } else {
       setShowDropdown(false);
     }
-    setHighlightIndex(-1);
+
+    setHighlightIndex(-1); // 每次删除一个input中的字母后，之前的选中状态去掉
   }, [debouncedValue, fetchSuggestions]);
   const highlight = (index: number) => {
     if (index < 0) index = 0;
@@ -77,18 +82,19 @@ export const AutoComplete: FC<AutoCompleteProps> = (props) => {
   };
   const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
     switch (e.keyCode) {
-      case 13:
+      case 13: // enter选中
         if (suggestions[highlightIndex]) {
+          // 存在才能只能选中
           handleSelect(suggestions[highlightIndex]);
         }
         break;
-      case 38:
+      case 38: // 下
         highlight(highlightIndex - 1);
         break;
-      case 40:
+      case 40: //上
         highlight(highlightIndex + 1);
         break;
-      case 27:
+      case 27: // 退出
         setShowDropdown(false);
         break;
       default:
@@ -98,7 +104,7 @@ export const AutoComplete: FC<AutoCompleteProps> = (props) => {
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value.trim();
     setInputValue(value);
-    triggerSearch.current = true;
+    triggerSearch.current = true; // 选中操作时，有选中的值
   };
   const handleSelect = (item: DataSourceType) => {
     setInputValue(item.value);
@@ -106,7 +112,7 @@ export const AutoComplete: FC<AutoCompleteProps> = (props) => {
     if (onSelect) {
       onSelect(item);
     }
-    triggerSearch.current = false;
+    triggerSearch.current = false; // 选择过程中，没有选中的值
   };
   const renderTemplate = (item: DataSourceType) => {
     return renderOption ? renderOption(item) : item.value;
