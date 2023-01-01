@@ -11,10 +11,11 @@ module.exports = ({ config }) => {
           presets: [require.resolve('babel-preset-react-app')],
         },
       },
+      // 自动生成文档
       // {
       //   loader: require.resolve('react-docgen-typescript-loader'),
       //   options: {
-      //     shouldExtractLiteralValuesFromEnum: true,
+      //     shouldExtractLiteralValuesFromEnum: true, // 只展示自定义属性，默认属性不展示
       //     propFilter: (prop) => {
       //       if (prop.parent) {
       //         return !prop.parent.fileName.includes('node_modules');
