@@ -16,6 +16,8 @@ import Icon from '../Icon/icon'
 //   }
 //   return true;
 // }
+
+// 重命名文件名
 // const filePromise = (file: File) => {
 //   const newFile = new File([file], 'new_name.docx', {type: file.type})
 //   return Promise.resolve(newFile)

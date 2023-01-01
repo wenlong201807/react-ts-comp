@@ -7,6 +7,9 @@ interface UploadListProps {
   onRemove: (_file: UploadFile) => void;
 }
 
+/**
+ * 显示文件上传列表
+ */
 export const UploadList: FC<UploadListProps> = (props) => {
   const { fileList, onRemove } = props;
 

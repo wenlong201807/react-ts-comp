@@ -4,6 +4,7 @@ import UploadList from './uploadList';
 import Dragger from './dragger';
 export type UploadFileStatus = 'ready' | 'uploading' | 'success' | 'error';
 
+// 上传一个文件的状态
 export interface UploadFile {
   uid: string;
   size: number;
@@ -89,8 +90,9 @@ export const Upload: FC<UploadProps> = (props) => {
   const [fileList, setFileList] = useState<UploadFile[]>(defaultFileList || []);
   const updateFileList = (
     updateFile: UploadFile,
-    updateObj: Partial<UploadFile>
+    updateObj: Partial<UploadFile> // 可选值
   ) => {
+    // 同步过程中，如何更新异步数据
     setFileList((prevList) => {
       return prevList.map((file) => {
         if (file.uid === updateFile.uid) {
@@ -168,9 +170,10 @@ export const Upload: FC<UploadProps> = (props) => {
           'Content-Type': 'multipart/form-data', // 文件必须是二进制格式
         },
         withCredentials,
-        onUploadProgress: (e: any) => {
+        onUploadProgress: (e: any) => { // 上传进度条
           let percentage = Math.round((e.loaded * 100) / e.total) || 0;
           if (percentage < 100) {
+            // 此过程为异步
             updateFileList(_file, { percent: percentage, status: 'uploading' });
             if (onProgress) {
               onProgress(percentage, file);
