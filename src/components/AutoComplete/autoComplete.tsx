@@ -13,6 +13,17 @@ import Icon from '../Icon/icon';
 import Transition from '../Transition/transition';
 import useDebounce from '../../hooks/useDebounce';
 import useClickOutside from '../../hooks/useClickOutside';
+
+/**
+ * 优化点
+ * custom option
+ * keyborad support
+ * debounce
+ * click outside
+ *
+ * 软件开发模式mvp: 渐进式提升产品功能：先可用，再优化
+ */
+
 // 简单数据类型
 interface DataSourceObject {
   value: string;
