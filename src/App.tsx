@@ -5,6 +5,7 @@ import MenuItem from './components/Menu/menuItem';
 import SubMenu from './components/Menu/subMenu';
 import Icon from './components/Icon';
 import Transition from './components/Transition';
+// import AutoComplete from './components/AutoComplete';
 
 const defalutProps: MenuProps = {
   defaultIndex: '0',
@@ -73,6 +74,10 @@ function App() {
         </div>
       </Transition>
       <Button onClick={() => setShow(!show)}>动画展示</Button>
+      <br />
+      <br />
+      <br />
+      {/* <AutoComplete ></AutoComplete> */}
       <br />
       <br />
       <br />
