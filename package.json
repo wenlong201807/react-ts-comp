@@ -1,6 +1,6 @@
 {
   "name": "react-ts-comp",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "private": false,
   "description": "react ts comp lib",
   "author": "wenlong.zhu",
@@ -11,7 +11,9 @@
   "keywords": [
     "Component",
     "UI",
-    "React"
+    "React",
+    "typescript",
+    "hook"
   ],
   "homepage": "http://wenlong.live:6006/?path=/story/welcome-page--welcome",
   "repository": {
