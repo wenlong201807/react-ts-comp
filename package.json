@@ -46,8 +46,9 @@
     "build-ts": "tsc -p tsconfig.build.json",
     "build-css": "node-sass ./src/styles/index.scss ./dist/index.css",
     "clean": "rimraf ./dist",
+    "cleanBook": "rimraf ./storybook-static",
     "storybook": "start-storybook -p 6006 -s public",
-    "build-storybook": "build-storybook -s public",
+    "build-storybook": "npm run cleanBook && build-storybook -s public",
     "sass": "sass --watch ./src/styles/index.scss ./.storybook/main.css",
     "prepublishOnly": "npm run build"
   },

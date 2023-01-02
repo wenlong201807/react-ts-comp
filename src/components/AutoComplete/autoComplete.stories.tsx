@@ -1,7 +1,8 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-import { AutoComplete } from './autoComplete';
+import { withInfo } from '@storybook/addon-info';
+import { AutoComplete, DataSourceType } from './autoComplete';
 interface LakerPlayerProps {
   value: string;
   number: number;
@@ -11,7 +12,7 @@ interface GithubUserProps {
   url: string;
   avatar_url: string;
 }
-const SimpleComplete = () => {
+const OneComplete = () => {
   const lakers = [
     'bradley',
     'pope',
@@ -26,6 +27,41 @@ const SimpleComplete = () => {
     'McGee',
     'rando',
   ];
+
+  const handleFetch = (query: string) => {
+    return lakers
+      .filter((name) => name.includes(query))
+      .map((name) => ({ value: name }));
+  };
+
+  return (
+    <AutoComplete
+      fetchSuggestions={handleFetch}
+      onSelect={action('selected')}
+    />
+  );
+};
+const FetchComplete = () => {
+  const handleFetch = (query: string) => {
+    return fetch(`https://api.github.com/search/users?q=${query}`)
+      .then((res) => res.json())
+      .then(({ items }) => {
+        console.log(items);
+        return items
+          .slice(0, 10)
+          .map((item: any) => ({ value: item.login, ...item }));
+      });
+  };
+
+  return (
+    <AutoComplete
+      fetchSuggestions={handleFetch}
+      onSelect={action('selected')}
+    />
+  );
+};
+
+const TwoComplete = () => {
   const lakersWithNumber = [
     { value: 'bradley', number: 11 },
     { value: 'pope', number: 1 },
@@ -38,39 +74,43 @@ const SimpleComplete = () => {
     { value: 'howard', number: 39 },
     { value: 'kuzma', number: 0 },
   ];
-  // const handleFetch = (query: string) => {
-  //   return lakers.filter(name => name.includes(query)).map(name => ({value: name}))
-  // }
-  // const handleFetch = (query: string) => {
-  //   return lakersWithNumber.filter(player => player.value.includes(query))
-  // }
+
   const handleFetch = (query: string) => {
-    return fetch(`https://api.github.com/search/users?q=${query}`)
-      .then((res) => res.json())
-      .then(({ items }) => {
-        console.log(items);
-        return items
-          .slice(0, 10)
-          .map((item: any) => ({ value: item.login, ...item }));
-      });
+    return lakersWithNumber.filter((player) => player.value.includes(query));
   };
 
-  // const renderOption = (item: DataSourceType) => {
-  //   const itemWithGithub = item as DataSourceType<GithubUserProps>
-  //   return (
-  //     <>
-  //       <h2>Name: {itemWithGithub.value}</h2>
-  //       <p>url: {itemWithGithub.url}</p>
-  //     </>
-  //   )
-  // }
+  const renderOption = (item: DataSourceType) => {
+    const itemWithGithub = item as DataSourceType<GithubUserProps>;
+    return (
+      <>
+        <h2>Name: {itemWithGithub.value}</h2>
+        <p>url: {itemWithGithub.url}</p>
+      </>
+    );
+  };
   return (
     <AutoComplete
       fetchSuggestions={handleFetch}
       onSelect={action('selected')}
-      //renderOption={renderOption}
+      renderOption={renderOption}
     />
   );
 };
 
-storiesOf('AutoComplete Component', module).add('AutoComplete', SimpleComplete);
+storiesOf('AutoComplete Component', module)
+  .addDecorator(withInfo)
+  .addParameters({
+    info: {
+      text: `
+    this is a very nice component
+    ## this is AutoComplete
+    ~~~js
+    npm install react-ts-comp --save
+    ~~~
+    `,
+      inline: true,
+    },
+  })
+  .add('接口请求数据 AutoComplete', FetchComplete)
+  .add('简单结构 AutoComplete', OneComplete)
+  .add('复杂结构 AutoComplete', TwoComplete);

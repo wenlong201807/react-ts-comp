@@ -1,5 +1,6 @@
 import React  from 'react'
 import { storiesOf } from '@storybook/react'
+import { withInfo } from '@storybook/addon-info';
 import { action } from '@storybook/addon-actions'
 import { Upload } from './upload'
 //import Button from '../Button/button'
@@ -40,4 +41,17 @@ const SimpleUpload = () => {
 }
 
 storiesOf('Upload component', module)
+.addDecorator(withInfo)
+.addParameters({
+  info: {
+    text: `
+    this is a very nice component
+    ## this is Upload
+    ~~~js
+    npm install react-ts-comp --save
+    ~~~
+    `,
+    inline: true,
+  },
+})
   .add('Upload', SimpleUpload)

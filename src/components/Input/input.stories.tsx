@@ -1,5 +1,6 @@
 import React, { useState, ChangeEvent } from 'react';
 import { storiesOf } from '@storybook/react';
+import { withInfo } from '@storybook/addon-info';
 import { action } from '@storybook/addon-actions';
 import { Input } from './input';
 const ControlledInput = () => {
@@ -55,6 +56,19 @@ const pandInput = () => (
 );
 
 storiesOf('Input component', module)
+.addDecorator(withInfo)
+.addParameters({
+  info: {
+    text: `
+    this is a simple component
+    ## this is Input
+    ~~~js
+    npm install react-ts-comp --save
+    ~~~
+    `,
+    inline: true,
+  },
+})
   .add('Input', defaultInput)
   .add('被禁用的 Input', disabledInput)
   .add('带图标的 Input', iconInput)
