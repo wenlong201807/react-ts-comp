@@ -21,6 +21,11 @@
   "files": [
     "dist"
   ],
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run test:nowatch && npm run lint"
+    }
+  },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.2.1",
     "@fortawesome/free-solid-svg-icons": "^6.2.1",
@@ -35,6 +40,7 @@
     "lint": "eslint --ext js,ts,tsx src --max-warnings 5",
     "start": "react-scripts start",
     "build": "npm run clean && npm run build-ts && npm run build-css",
+    "test:nowatch": "cross-env CI=true react-scripts test",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "build-ts": "tsc -p tsconfig.build.json",
@@ -99,8 +105,10 @@
     "@types/react-transition-group": "^4.4.5",
     "@types/storybook__addon-info": "^5.2.5",
     "babel-plugin-named-exports-order": "^0.0.2",
+    "cross-env": "^7.0.3",
     "css-loader": "^6.7.3",
     "eslint": "^8.31.0",
+    "husky": "^8.0.2",
     "node-sass": "^8.0.0",
     "postcss": "^8",
     "prop-types": "^15.8.1",
