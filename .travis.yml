@@ -15,3 +15,4 @@ deploy:
   local_dir: storybook-static
   on:
     branch: feat/ci
+ 
