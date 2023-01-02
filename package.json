@@ -1,10 +1,26 @@
 {
   "name": "react-ts-comp",
-  "version": "0.1.0",
-  "private": true,
+  "version": "0.1.1",
+  "private": false,
+  "description": "react ts comp lib",
+  "author": "wenlong.zhu",
   "main": "dist/index.js",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
+  "license": "MIT",
+  "keywords": [
+    "Component",
+    "UI",
+    "React"
+  ],
+  "homepage": "https://github.com/wenlong201807/react-ts-comp",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:wenlong201807/react-ts-comp.git"
+  },
+  "files": [
+    "dist"
+  ],
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.2.1",
     "@fortawesome/free-solid-svg-icons": "^6.2.1",
@@ -30,7 +46,8 @@
     "clean": "rimraf ./dist",
     "storybook": "start-storybook -p 6006 -s public",
     "build-storybook": "build-storybook -s public",
-    "sass": "sass --watch ./src/styles/index.scss ./.storybook/main.css"
+    "sass": "sass --watch ./src/styles/index.scss ./.storybook/main.css",
+    "prepublish": "npm run build"
   },
   "eslintConfig": {
     "extends": [

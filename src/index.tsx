@@ -1,8 +1,8 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-// import './styles/index.scss';
-import '../dist/index.css';
-import App from './App';
+// import React from 'react';
+// import ReactDOM from 'react-dom/client';
+// // import './styles/index.scss';
+// import '../dist/index.css';
+// import App from './App';
 
 // 一次性将所有图标都加入进来【此图标库的用法如此】
 import { library } from '@fortawesome/fontawesome-svg-core'
@@ -20,10 +20,10 @@ export { default as Transition } from './components/Transition'
 export { default as Upload } from './components/Upload'
 
 // 本地研发自测使用
-const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+// const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
+// root.render(
+//   <React.StrictMode>
+//     <App />
+//   </React.StrictMode>
+// );
 
