@@ -10,15 +10,18 @@ jest.mock('../Icon/icon', () => {
     return <span onClick={onClick}>{icon}</span>
   }
 })
+
+// 异步测试模式
 jest.mock('axios')
-const mockedAxios = axios as jest.Mocked<typeof axios>
+const mockedAxios = axios as jest.Mocked<typeof axios> // 类型断言
 
 const testProps: UploadProps = {
   action: "fakeurl.com",
   onSuccess: jest.fn(),
   onChange: jest.fn(),
   onRemove: jest.fn(),
-  drag: true
+  drag: true,
+  // children: HTMLElement
 }
 let wrapper: RenderResult, fileInput: HTMLInputElement, uploadArea: HTMLElement
 const testFile = new File(['xyz'], 'test.png', {type: 'image/png'})
@@ -61,6 +64,7 @@ describe('test upload component', () => {
     fireEvent.dragLeave(uploadArea)
     expect(uploadArea).not.toHaveClass('is-dragover')
     const mockDropEvent = createEvent.drop(uploadArea)
+    // 不支持默认的方法，则自己扩展
     Object.defineProperty(mockDropEvent, "dataTransfer", {
       value: {
         files: [testFile]

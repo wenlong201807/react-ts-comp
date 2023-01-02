@@ -12,11 +12,13 @@ export const Dragger: FC<DraggerProps> = (props) => {
   const klass = classNames('viking-uploader-dragger', {
     'is-dragover': dragOver,
   });
+
   const handleDrop = (e: DragEvent<HTMLElement>) => {
-    e.preventDefault();
+    e.preventDefault(); // 禁止默认行为
     setDragOver(false);
     onFile(e.dataTransfer.files);
   };
+
   const handleDrag = (e: DragEvent<HTMLElement>, over: boolean) => {
     e.preventDefault();
     setDragOver(over);

@@ -41,7 +41,7 @@ export interface UploadProps {
  * 2 默认不会带 cookie
  * 3 不支持abort，不支持超时控制
  * 4 没有办法原生监控请求的进度
- * 
+ *
  * axios特点
  * 1 客户端全支持
  * 2 支持nodejs请求
@@ -51,7 +51,7 @@ export interface UploadProps {
  * 6 中断请求
  * 7 自动转换为json数据
  * 8 客户端保护xsrf
-*/
+ */
 
 /**
  *
@@ -65,6 +65,19 @@ export interface UploadProps {
  * 6 onRemove(file)
  *
  * 7 action 接口地址
+ *
+ * 丰富化上传数据
+ * 1 添加自定义header
+ * 2 添加name属性 代表发到后台的文件参数名称
+ * 3 添加data属性 上传所需的额外参数
+ * 4 添加input 本身的file约束属性 multiple accept等
+ * 5 是否携带cookie
+ *
+ * 丰富化界面和交互
+ * 1 自定义出发的元素
+ * 2 支持拖动上传文件
+ * 3 点击上传文件名称 添加onPreivew 事件
+ *
  * @returns
  */
 export const Upload: FC<UploadProps> = (props) => {
@@ -126,6 +139,8 @@ export const Upload: FC<UploadProps> = (props) => {
       onRemove(file);
     }
   };
+
+  // 钩子触发起点
   const uploadFiles = (files: FileList) => {
     let postFiles = Array.from(files);
     postFiles.forEach((file) => {
@@ -134,6 +149,7 @@ export const Upload: FC<UploadProps> = (props) => {
       } else {
         const result = beforeUpload(file);
         if (result && result instanceof Promise) {
+          // promise 化
           result.then((processedFile) => {
             post(processedFile);
           });
@@ -157,7 +173,7 @@ export const Upload: FC<UploadProps> = (props) => {
       return [_file, ...prevList];
     });
     const formData = new FormData();
-    formData.append(name || 'file', file);
+    formData.append(name || 'file', file); // 自定义文件名
     if (data) {
       Object.keys(data).forEach((key) => {
         formData.append(key, data[key]);
@@ -170,7 +186,8 @@ export const Upload: FC<UploadProps> = (props) => {
           'Content-Type': 'multipart/form-data', // 文件必须是二进制格式
         },
         withCredentials,
-        onUploadProgress: (e: any) => { // 上传进度条
+        onUploadProgress: (e: any) => {
+          // 上传进度条
           let percentage = Math.round((e.loaded * 100) / e.total) || 0;
           if (percentage < 100) {
             // 此过程为异步
@@ -211,7 +228,7 @@ export const Upload: FC<UploadProps> = (props) => {
         {drag ? (
           <Dragger
             onFile={(files) => {
-              uploadFiles(files);
+              uploadFiles(files); // 将上传文件函数 传递给子组件
             }}
           >
             {children}
@@ -235,6 +252,7 @@ export const Upload: FC<UploadProps> = (props) => {
   );
 };
 
+// 添加默认参数
 Upload.defaultProps = {
   name: 'file',
 };
