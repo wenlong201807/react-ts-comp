@@ -56,6 +56,7 @@ export const AutoComplete: FC<AutoCompleteProps> = (props) => {
   const debouncedValue = useDebounce(inputValue, 300);
   useClickOutside(componentRef, () => {
     setSugestions([]); // dom之后，则关闭下拉框
+    setShowDropdown(false)
   });
   useEffect(() => {
     // 避免最后一次多余的请求，必须是 有选中的值才发请求
@@ -163,7 +164,7 @@ export const AutoComplete: FC<AutoCompleteProps> = (props) => {
     );
   };
   return (
-    <div className="viking-auto-complete" ref={componentRef}>
+    <div className="viking-auto-complete" ref={componentRef} style={{background: 'pink'}}>
       <Input
         value={inputValue}
         onChange={handleChange}

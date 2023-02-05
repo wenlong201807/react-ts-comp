@@ -14,6 +14,7 @@ interface BaseButtonProps {
   btnType?: ButtonType;
   children: React.ReactNode;
   href?: string;
+  ref?: any;
 }
 
 // 获取button所有默认属性

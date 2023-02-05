@@ -8,7 +8,7 @@ import Button from '../Button';
 const SimpleTransition = () => {
   const [show, setShow] = useState(false);
   return (
-    <>
+    <div style={{height: '130px'}}>
       <Button onClick={() => setShow(!show)}>动画展示</Button>
       <Transition in={show} timeout={300} animation="zoom-in-top" wrapper>
         <div>
@@ -18,7 +18,7 @@ const SimpleTransition = () => {
           <p>asdasdf</p>
         </div>
       </Transition>
-    </>
+    </div>
   );
 };
 

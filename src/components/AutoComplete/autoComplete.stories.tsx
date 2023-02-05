@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState, useCallback } from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { withInfo } from '@storybook/addon-info';
+import Button from '../Button/button';
 import { AutoComplete, DataSourceType } from './autoComplete';
 interface LakerPlayerProps {
   value: string;
@@ -42,6 +43,7 @@ const OneComplete = () => {
   );
 };
 const FetchComplete = () => {
+  // const [show, setShow] = useState(false);
   const handleFetch = (query: string) => {
     return fetch(`https://api.github.com/search/users?q=${query}`)
       .then((res) => res.json())
@@ -53,11 +55,27 @@ const FetchComplete = () => {
       });
   };
 
+  const btnClick = () => {
+    console.log(888)
+  };
+
   return (
-    <AutoComplete
-      fetchSuggestions={handleFetch}
-      onSelect={action('selected')}
-    />
+    <>
+      <Button btnType="primary" onClick={btnClick}>
+        一步到位执行(注意看input的下拉框是否存在)
+      </Button>
+      <br />
+      <br />
+      <div style={{ height: '30px' }}>
+        {/* {show && <span>下拉框有没有，我都能切换</span>} */}
+      </div>
+      <br />
+      <br />
+      <AutoComplete
+        fetchSuggestions={handleFetch}
+        onSelect={action('selected')}
+      />
+    </>
   );
 };
 

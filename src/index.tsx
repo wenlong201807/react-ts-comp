@@ -18,6 +18,7 @@ export { default as Input } from './components/Input'
 export { default as Progress } from './components/Progress'
 export { default as Transition } from './components/Transition'
 export { default as Upload } from './components/Upload'
+export { default as Overlay } from './components/Overlay'
 
 // 本地研发自测使用
 // const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
