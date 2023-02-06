@@ -15,10 +15,9 @@ export var UploadList = function (props) {
                 (item.status === 'uploading' || item.status === 'ready') && (React.createElement(Icon, { icon: "spinner", spin: true, theme: "primary" })),
                 item.status === 'success' && (React.createElement(Icon, { icon: "check-circle", theme: "success" })),
                 item.status === 'error' && (React.createElement(Icon, { icon: "times-circle", theme: "danger" }))),
-            React.createElement("span", { className: "file-actions" },
-                React.createElement(Icon, { icon: "times", onClick: function () {
-                        onRemove(item);
-                    } })),
+            React.createElement("span", { className: "file-actions", onClick: function () {
+                    onRemove(item);
+                } }, "x"),
             item.status === 'uploading' && (React.createElement(Progress, { percent: item.percent || 0 }))));
     })));
 };

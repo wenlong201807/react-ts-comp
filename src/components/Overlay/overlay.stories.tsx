@@ -35,22 +35,38 @@ const UnderControl = () => {
   const buttonRef = useRef();
   return (
     <>
-      <Button onClick={() => {
-        setOther(!other)
-        console.log(buttonRef)
-      }}>其他操作, 一往如常</Button>
+      <div style={{ height: '130px' }}>
+        <div>功能1、自定义弹框展示的位置</div>
+        <div>功能2、自定义关闭行为，如 指定ESC按键可关闭</div>
+        <div>功能3、自定义 弹框不可关闭的安全域，且在此域内可配置关闭</div>
+        <div>
+          功能4、关闭弹框，和其他事件的触发可以 一次执行，【减少一次】的点击行为{' '}
+        </div>
+      </div>
+      <Button
+        onClick={() => {
+          setOther(!other);
+          console.log(buttonRef);
+        }}
+      >
+        功能4
+      </Button>
       <br />
       <div style={{ height: '40px' }}>{other ? '显示aa' : '隐藏bb'}</div>
       <br />
       <br />
-      <Button onMouseDown={(e) => {
-        e.stopPropagation();
-        e.preventDefault();
-        console.log(88)
-      }} onClick={(e: any) => {
-        setVisible(true)
-      }} ref={buttonRef}>
-        打开弹框
+      <Button
+        onMouseDown={(e) => {
+          e.stopPropagation();
+          e.preventDefault();
+          console.log(88);
+        }}
+        onClick={(e: any) => {
+          setVisible(true);
+        }}
+        ref={buttonRef}
+      >
+        打开弹框-功能1
       </Button>
       <Overlay
         visible={visible}
@@ -66,18 +82,20 @@ const UnderControl = () => {
             border: '1px solid black',
             width: 300,
             height: 300,
-            background: '#ccc'
+            background: '#ccc',
           }}
         >
-          Under Control Overlay
-          <Button btnType='primary' onClick={() => setInner(!inner)}>
-            安全域内的，其他操作, 一往如常
+          自定义弹框内容区域(UI完全可控)
+          <Button btnType="primary" onClick={() => setInner(!inner)}>
+            功能4
           </Button>
           <br />
           <div style={{ height: '40px' }}>
-            {inner ? '安全域内--显示aa' : '安全域内--隐藏bb'}
+            {inner ? '安全域内--显示cc' : '安全域内--隐藏dd'}
           </div>
-          <div>可按 ESC 键位 关闭</div>
+          <Button btnType="danger" onClick={() => setVisible(false)}>
+            功能3
+          </Button>
         </div>
       </Overlay>
     </>

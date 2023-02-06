@@ -12,7 +12,13 @@ const styles: React.CSSProperties = {
 const CenterDecorator = (storyFn: any) => <div style={styles}>{storyFn()}</div>;
 
 const defaultButton = () => (
-  <Button onClick={action('clicked')}>default button</Button>
+  <>
+    <div style={{ height: '50px' }}>
+      <div>VS (Element antd3.29版)</div>
+      <div>解决痛点: 点击之后,然后鼠标移开后,ui状态恢复初始态</div>
+    </div>
+    <Button onClick={action('clicked')}>default button</Button>
+  </>
 );
 
 const buttonWithSize = () => (
@@ -27,7 +33,9 @@ const buttonWithType = () => (
     <Button btnType="primary">primary button</Button>
     <Button btnType="danger">danger button</Button>
     <Button btnType="default">default button</Button>
-    <Button btnType="link" href="https://google.com">link button</Button>
+    <Button btnType="link" href="https://google.com">
+      link button
+    </Button>
   </>
 );
 

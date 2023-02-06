@@ -17,6 +17,10 @@ const ControlledInput = () => {
 };
 const defaultInput = () => (
   <>
+    <div style={{ height: '50px' }}>
+      <div>VS (Element iview)</div>
+      <div>解决痛点: 初始值为undefine的时候, 重置为 空字符串</div>
+    </div>
     <Input
       style={{ width: '300px' }}
       placeholder="placeholder"
@@ -56,19 +60,19 @@ const pandInput = () => (
 );
 
 storiesOf('Input component', module)
-.addDecorator(withInfo)
-.addParameters({
-  info: {
-    text: `
+  .addDecorator(withInfo)
+  .addParameters({
+    info: {
+      text: `
     this is a simple component
     ## this is Input
     ~~~js
     npm install react-ts-comp --save
     ~~~
     `,
-    inline: true,
-  },
-})
+      inline: true,
+    },
+  })
   .add('Input', defaultInput)
   .add('被禁用的 Input', disabledInput)
   .add('带图标的 Input', iconInput)

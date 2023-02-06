@@ -1,3 +1,4 @@
+@charset "UTF-8";
 *,
 *::before,
 *::after {
@@ -289,6 +290,25 @@ main {
 [hidden] {
   display: none !important; }
 
+/* 鼠标点下之后，再移开时的样式 */
+.btn-primary:focus:not(.btn-primary:hover) {
+  color: #fff;
+  background: #0d6efd;
+  border-color: #0d6efd;
+  border-radius: 2px; }
+
+.btn-danger:focus:not(.btn-danger:hover) {
+  color: #fff;
+  background: #dc3545;
+  border-color: #dc3545;
+  border-radius: 2px; }
+
+.btn-default:focus:not(.btn-default:hover) {
+  color: #212529;
+  background: #fff;
+  border: 1px solid #ced4da;
+  border-radius: 2px; }
+
 .zoom-in-top-enter {
   opacity: 0;
   transform: scaleY(0); }
@@ -381,7 +401,8 @@ main {
   border-radius: 0.25rem;
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 1px 1px rgba(0, 0, 0, 0.075);
   cursor: pointer;
-  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out; }
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  outline: none !important; }
   .btn.disabled, .btn[disabled] {
     cursor: not-allowed;
     opacity: 0.65;
@@ -402,15 +423,22 @@ main {
 .btn-primary {
   color: #fff;
   background: #0d6efd;
-  border-color: #0d6efd; }
-  .btn-primary:hover {
+  border-color: #0d6efd;
+  /*鼠标悬浮，没有按下；鼠标按下后抬起，没有移开*/
+  /*鼠标按下，没有抬起*/ }
+  .btn-primary:hover, .btn-primary:focus, .btn-primary.focus {
+    border-radius: 7px;
     color: #fff;
     background: #3385fd;
-    border-color: #408cfd; }
-  .btn-primary:focus, .btn-primary.focus {
-    color: #fff;
-    background: #3385fd;
-    border-color: #408cfd; }
+    border-color: white; }
+  .btn-primary:active {
+    background: #fff;
+    color: #3385fd;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px; }
   .btn-primary:disabled, .btn-primary.disabled {
     color: #fff;
     background: #0d6efd;
@@ -419,15 +447,22 @@ main {
 .btn-danger {
   color: #fff;
   background: #dc3545;
-  border-color: #dc3545; }
-  .btn-danger:hover {
+  border-color: #dc3545;
+  /*鼠标悬浮，没有按下；鼠标按下后抬起，没有移开*/
+  /*鼠标按下，没有抬起*/ }
+  .btn-danger:hover, .btn-danger:focus, .btn-danger.focus {
+    border-radius: 7px;
     color: #fff;
     background: #e25663;
-    border-color: #e4606d; }
-  .btn-danger:focus, .btn-danger.focus {
-    color: #fff;
-    background: #e25663;
-    border-color: #e4606d; }
+    border-color: white; }
+  .btn-danger:active {
+    background: #fff;
+    color: #e25663;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px; }
   .btn-danger:disabled, .btn-danger.disabled {
     color: #fff;
     background: #dc3545;
@@ -436,15 +471,22 @@ main {
 .btn-default {
   color: #212529;
   background: #fff;
-  border-color: #ced4da; }
-  .btn-default:hover {
+  border-color: #ced4da;
+  /*鼠标悬浮，没有按下；鼠标按下后抬起，没有移开*/
+  /*鼠标按下，没有抬起*/ }
+  .btn-default:hover, .btn-default:focus, .btn-default.focus {
+    border-radius: 7px;
     color: #0d6efd;
     background: #fff;
     border-color: #0d6efd; }
-  .btn-default:focus, .btn-default.focus {
-    color: #0d6efd;
-    background: #fff;
-    border-color: #0d6efd; }
+  .btn-default:active {
+    background: #0d6efd;
+    color: #fff;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px; }
   .btn-default:disabled, .btn-default.disabled {
     color: #212529;
     background: #fff;
@@ -659,7 +701,6 @@ main {
   z-index: 100;
   top: calc(100% + 8px);
   left: 0;
-  border: 1px solid #dee2e6;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.12), 0 0 6px 0 rgba(0, 0, 0, 0.04);
   width: 100%; }
   .viking-suggestion-list .suggstions-loading-icon {

@@ -11,6 +11,7 @@ interface BaseButtonProps {
     btnType?: ButtonType;
     children: React.ReactNode;
     href?: string;
+    ref?: any;
 }
 type NativeButtonProps = BaseButtonProps & ButtonHTMLAttributes<HTMLElement>;
 type AnchorButtonProps = BaseButtonProps & AnchorHTMLAttributes<HTMLElement>;

@@ -42,6 +42,7 @@ export var AutoComplete = function (props) {
     var debouncedValue = useDebounce(inputValue, 300);
     useClickOutside(componentRef, function () {
         setSugestions([]); // dom之后，则关闭下拉框
+        setShowDropdown(false);
     });
     useEffect(function () {
         // 避免最后一次多余的请求，必须是 有选中的值才发请求
@@ -130,7 +131,7 @@ export var AutoComplete = function (props) {
                     return (React.createElement("li", { key: index, className: cnames, onClick: function () { return handleSelect(item); } }, renderTemplate(item)));
                 }))));
     };
-    return (React.createElement("div", { className: "viking-auto-complete", ref: componentRef },
+    return (React.createElement("div", { className: "viking-auto-complete", ref: componentRef, style: { background: 'pink' } },
         React.createElement(Input, __assign({ value: inputValue, onChange: handleChange, onKeyDown: handleKeyDown }, restProps)),
         generateDropdown()));
 };
